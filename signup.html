@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up - ServeWithCare</title>
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body>
+  <div class="signup-container">
+    <h1>Create a New Account</h1>
+    <form id="signupForm" novalidate>
+      <label for="name">Full Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter your full name"
+        required
+        autocomplete="name"
+      />
+
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="you@example.com"
+        required
+        autocomplete="username"
+      />
+
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Create a password"
+        required
+        autocomplete="new-password"
+      />
+
+      <label for="confirm-password">Confirm Password</label>
+      <input
+        type="password"
+        id="confirm-password"
+        name="confirm-password"
+        placeholder="Confirm your password"
+        required
+        autocomplete="new-password"
+      />
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          window.location.href = 'login.html';
+        });
+    </script>
+      
+
+    <p class="login-link">
+      Already have an account? <a href="login.html">Login here</a>
+    </p>
+  </div>
+
+  <script src="signup.js"></script>
+</body>
+</html>
