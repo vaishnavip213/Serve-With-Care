@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NGO Dashboard - ServeWithCare</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="ngo_dashboard.css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <h2><i class="fas fa-heart"></i> ServeWithCare</h2>
+    </div>
+    <div class="nav-right">
+      <span class="ngo-name" id="ngoName">Welcome, NGO</span>
+      <a href="role_selection.html"><button class="logout-btn" onclick="logout()">Logout</button></a>
+      
+    </div>
+  </nav>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul class="sidebar-menu" id="sidebarMenu">
+      <li>
+        <a href="#" class="menu-link active" data-section="overview">
+          <i class="fas fa-th-large"></i> Overview
+        </a>
+      </li>
+      <li>
+        <a href="#" class="menu-link" data-section="beneficiaries">
+          <i class="fas fa-users"></i> Beneficiaries
+        </a>
+      </li>
+      <li>
+        <a href="#" class="menu-link" data-section="donations">
+          <i class="fas fa-box"></i> Donations
+        </a>
+      </li>
+      <li>
+        <a href="#" class="menu-link" data-section="food-needs">
+          <i class="fas fa-calendar"></i> Food Needs
+        </a>
+      </li>
+      <li>
+        <a href="#" class="menu-link" data-section="reports">
+          <i class="fas fa-chart-bar"></i> Reports
+        </a>
+      </li>
+      <li>
+        <a href="#" class="menu-link" data-section="settings">
+          <i class="fas fa-cog"></i> Settings
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Overview Section -->
+    <div id="overview" class="content-section active">
+      <div class="dashboard-header">
+        <div>
+          <h1><i class="fas fa-tachometer-alt"></i> Dashboard Overview</h1>
+        </div>
+        <div class="header-actions">
+          <button class="btn-primary" onclick="toggleSection('beneficiaries')">
+            <i class="fas fa-plus"></i> Add Beneficiary
+          </button>
+          <button class="btn-secondary" onclick="toggleSection('food-needs')">
+            <i class="fas fa-calendar-check"></i> Set Food Need
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon people">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="stat-content">
+            <h3>Total Beneficiaries</h3>
+            <p id="totalBeneficiaries">0</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon donations">
+            <i class="fas fa-box"></i>
+          </div>
+          <div class="stat-content">
+            <h3>Total Donations Received</h3>
+            <p id="totalDonationsCount">0</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon needs">
+            <i class="fas fa-calendar"></i>
+          </div>
+          <div class="stat-content">
+            <h3>Active Food Needs</h3>
+            <p id="activeFoodNeeds">0</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon impact">
+            <i class="fas fa-heart"></i>
+          </div>
+          <div class="stat-content">
+            <h3>Total Impact</h3>
+            <p id="totalImpact">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activities -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <!-- Recent Beneficiaries -->
+        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+          <h3 style="color: #2C6B2F; margin-bottom: 1.5rem;">
+            <i class="fas fa-users"></i> Recent Beneficiaries
+          </h3>
+          <div id="recentBeneficiaries" style="max-height: 300px; overflow-y: auto;">
+            <div class="empty-state">
+              <i class="fas fa-inbox"></i>
+              <p>No beneficiaries added yet</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Donations -->
+        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+          <h3 style="color: #2C6B2F; margin-bottom: 1.5rem;">
+            <i class="fas fa-box"></i> Recent Donations
+          </h3>
+          <div id="recentDonations" style="max-height: 300px; overflow-y: auto;">
+            <div class="empty-state">
+              <i class="fas fa-inbox"></i>
+              <p>No donations received yet</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beneficiaries Section -->
+    <div id="beneficiaries" class="content-section">
+      <div class="dashboard-header">
+        <h2><i class="fas fa-users"></i> Beneficiary Management</h2>
+        <button class="btn-primary" onclick="openBeneficiaryModal()">
+          <i class="fas fa-plus"></i> Add Beneficiary
+        </button>
+      </div>
+
+      <div class="success-message" id="beneficiarySuccess">
+        <i class="fas fa-check-circle"></i> Beneficiary added successfully!
+      </div>
+
+      <div class="table-responsive">
+        <table id="beneficiariesTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Family Size</th>
+              <th>Contact</th>
+              <th>Category</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="beneficiariesBody">
+            <tr>
+              <td colspan="6" class="empty-state">
+                <i class="fas fa-inbox"></i>
+                <p>No beneficiaries registered yet</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Donations Section -->
+    <div id="donations" class="content-section">
+      <div class="dashboard-header">
+        <h2><i class="fas fa-box"></i> Donations Received</h2>
+      </div>
+
+      <div class="cards-grid" id="donationsCards">
+        <div class="empty-state" style="grid-column: 1/-1;">
+          <i class="fas fa-inbox"></i>
+          <p>No donations received yet</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Food Needs Section -->
+    <div id="food-needs" class="content-section">
+      <div class="dashboard-header">
+        <h2><i class="fas fa-calendar"></i> Food Needs Schedule</h2>
+        <button class="btn-primary" onclick="openFoodNeedModal()">
+          <i class="fas fa-plus"></i> Add Food Need
+        </button>
+      </div>
+
+      <div class="success-message" id="foodNeedSuccess">
+        <i class="fas fa-check-circle"></i> Food need added successfully!
+      </div>
+
+      <div class="cards-grid" id="foodNeedsCards">
+        <div class="empty-state" style="grid-column: 1/-1;">
+          <i class="fas fa-inbox"></i>
+          <p>No food needs scheduled yet</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reports Section -->
+    <div id="reports" class="content-section">
+      <h2><i class="fas fa-chart-bar"></i> Impact Reports</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+        <!-- Monthly Stats -->
+        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+          <h3 style="color: #2C6B2F; margin-bottom: 1.5rem;">
+            <i class="fas fa-chart-line"></i> Monthly Statistics
+          </h3>
+          <div style="margin-bottom: 1.5rem;">
+            <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Beneficiaries Served This Month</p>
+            <p style="font-size: 2rem; color: #2C6B2F; font-weight: bold;" id="monthlyBeneficiaries">0</p>
+            <div class="progress-bar">
+              <div class="progress-fill" id="monthlyProgress" style="width: 45%;"></div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Food Distributed (kg)</p>
+            <p style="font-size: 2rem; color: #2C6B2F; font-weight: bold;" id="foodDistributed">0</p>
+          </div>
+
+          <div>
+            <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Donations Processed</p>
+            <p style="font-size: 2rem; color: #2C6B2F; font-weight: bold;" id="donationsProcessed">0</p>
+          </div>
+        </div>
+
+        <!-- Impact Metrics -->
+        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+          <h3 style="color: #2C6B2F; margin-bottom: 1.5rem;">
+            <i class="fas fa-star"></i> Impact Metrics
+          </h3>
+          <div style="margin-bottom: 1.5rem;">
+            <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Average Family Size</p>
+            <p style="font-size: 2rem; color: #2C6B2F; font-weight: bold;" id="avgFamilySize">0</p>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Meals Provided (Est.)</p>
+            <p style="font-size: 2rem; color: #2C6B2F; font-weight: bold;" id="mealsProvided">0</p>
+          </div>
+
+          <div>
+            <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">People Helped</p>
+            <p style="font-size: 2rem; color: #2C6B2F; font-weight: bold;" id="peopleHelped">0</p>
+          </div>
+        </div>
+
+        <!-- Top Categories -->
+        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+          <h3 style="color: #2C6B2F; margin-bottom: 1.5rem;">
+            <i class="fas fa-list"></i> Top Food Categories
+          </h3>
+          <div id="topCategories">
+            <p style="color: #999; text-align: center;">No data available</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Section -->
+    <div id="settings" class="content-section">
+      <h2><i class="fas fa-cog"></i> Settings & Profile</h2>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+        <!-- Organization Profile -->
+        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+          <h3 style="color: #2C6B2F; margin-bottom: 1.5rem;">
+            <i class="fas fa-building"></i> Organization Profile
+          </h3>
+          <div style="margin-bottom: 1.5rem;">
+            <label style="color: #666; font-size: 0.9rem;">Organization Name</label>
+            <p style="font-size: 1.1rem; color: #333; font-weight: bold;" id="profileOrgName">-</p>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="color: #666; font-size: 0.9rem;">Registration Number</label>
+            <p style="font-size: 1.1rem; color: #333; font-weight: bold;" id="profileRegNumber">-</p>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="color: #666; font-size: 0.9rem;">Location</label>
+            <p style="font-size: 1.1rem; color: #333; font-weight: bold;" id="profileLocation">-</p>
+          </div>
+
+          <div>
+            <label style="color: #666; font-size: 0.9rem;">Member Since</label>
+            <p style="font-size: 1.1rem; color: #333; font-weight: bold;" id="profileMemberSince">-</p>
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+          <h3 style="color: #2C6B2F; margin-bottom: 1.5rem;">
+            <i class="fas fa-user-tie"></i> Contact Information
+          </h3>
+          <div style="margin-bottom: 1.5rem;">
+            <label style="color: #666; font-size: 0.9rem;">Contact Person</label>
+            <p style="font-size: 1.1rem; color: #333; font-weight: bold;" id="profileContactName">-</p>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="color: #666; font-size: 0.9rem;">Email</label>
+            <p style="font-size: 1.1rem; color: #333; font-weight: bold;" id="profileEmail">-</p>
+          </div>
+
+          <div>
+            <label style="color: #666; font-size: 0.9rem;">Phone</label>
+            <p style="font-size: 1.1rem; color: #333; font-weight: bold;" id="profilePhone">-</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notifications Settings -->
+      <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin-top: 2rem;">
+        <h3 style="color: #2C6B2F; margin-bottom: 1.5rem;">
+          <i class="fas fa-bell"></i> Notification Preferences
+        </h3>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="notifDonations" checked />
+            <label for="notifDonations">New Donation Alerts</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="notifBeneficiaries" checked />
+            <label for="notifBeneficiaries">Beneficiary Updates</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="notifReports" checked />
+            <label for="notifReports">Weekly Reports</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="notifEvents" checked />
+            <label for="notifEvents">Event Notifications</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+
+  <!-- Beneficiary Modal -->
+  <div id="beneficiaryModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Add New Beneficiary</h2>
+        <button class="close-btn" onclick="closeBeneficiaryModal()">×</button>
+      </div>
+      <form id="beneficiaryForm">
+        <div class="form-group">
+          <label for="benName">Full Name *</label>
+          <input type="text" id="benName" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="benAge">Age *</label>
+            <input type="number" id="benAge" min="1" required />
+          </div>
+          <div class="form-group">
+            <label for="benFamilySize">Family Size *</label>
+            <input type="number" id="benFamilySize" min="1" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="benPhone">Contact Number *</label>
+            <input type="tel" id="benPhone" required />
+          </div>
+          <div class="form-group">
+            <label for="benCategory">Category *</label>
+            <select id="benCategory" required>
+              <option value="">Select Category</option>
+              <option value="Senior Citizen">Senior Citizen</option>
+              <option value="Children">Children</option>
+              <option value="Homeless">Homeless</option>
+              <option value="Widow">Widow</option>
+              <option value="Disabled">Disabled</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="benAddress">Address *</label>
+          <textarea id="benAddress" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="benDietaryNeeds">Dietary Restrictions</label>
+          <input type="text" id="benDietaryNeeds" placeholder="e.g., Vegetarian, Gluten-free" />
+        </div>
+
+        <button type="submit" class="submit-btn">Add Beneficiary</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Food Need Modal -->
+  <div id="foodNeedModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Create Food Need Request</h2>
+        <button class="close-btn" onclick="closeFoodNeedModal()">×</button>
+      </div>
+      <form id="foodNeedForm">
+        <div class="form-group">
+          <label for="foodDate">Date Needed *</label>
+          <input type="date" id="foodDate" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="foodQuantity">Quantity (kg) *</label>
+            <input type="number" id="foodQuantity" min="1" step="0.5" required />
+          </div>
+          <div class="form-group">
+            <label for="foodPeople">Number of People *</label>
+            <input type="number" id="foodPeople" min="1" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="foodType">Preferred Food Type *</label>
+          <select id="foodType" required>
+            <option value="">Select Type</option>
+            <option value="Rice & Grains">Rice & Grains</option>
+            <option value="Vegetables">Vegetables</option>
+            <option value="Fruits">Fruits</option>
+            <option value="Milk & Dairy">Milk & Dairy</option>
+            <option value="Cooked Meals">Cooked Meals</option>
+            <option value="Mixed">Mixed Supplies</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="foodDescription">Additional Details</label>
+          <textarea id="foodDescription" placeholder="Any special requirements or preferences"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="foodUrgency">Urgency Level *</label>
+          <select id="foodUrgency" required>
+            <option value="Normal">Normal</option>
+            <option value="High">High</option>
+            <option value="Critical">Critical</option>
+          </select>
+        </div>
+
+        <button type="submit" class="submit-btn">Create Request</button>
+      </form>
+    </div>
+  </div>
+  <script src="ngo_dashboard.js"></script>
+  </body>
+  </html>
