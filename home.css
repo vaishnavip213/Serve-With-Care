@@ -1,0 +1,259 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Navbar Styles */
+  .navbar {
+    background-color: #4CAF50; /* Primary Green */
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar .logo h2 {
+    color: white;
+    font-size: 1.8rem;
+  }
+  
+  .nav-links {
+    display: flex;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #FFEB3B; /* Yellow Accent */
+  }
+  
+  /* Home Page Container */
+  .home-container {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .home-container h1 {
+    font-size: 2.8rem;
+    color: #2C6B2F;
+    margin-bottom: 1rem;
+  }
+  
+  .home-container p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Benefits Section Title */
+  h2 {
+    font-size: 2rem;
+    color: #2C6B2F;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Benefits Cards Section */
+  .benefits-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .card {
+    background-color: #fff;
+    width: 300px;
+    height: 350px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #F4E1D2; /* Light Beige */
+    animation: cardFadeIn 1s ease-out;
+  }
+  
+  .card h3 {
+    font-size: 1.6rem;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+  }
+  
+  .card p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  .card i {
+    color: #FF5733; /* Bright Orange for Icons */
+    margin-right: 10px;
+  }
+  
+  /* Hover Effects for Cards */
+  .card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Card Load Animation */
+  @keyframes cardFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .card:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  
+  .card:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+  
+  .card:nth-child(3) {
+    animation-delay: 0.5s;
+  }
+  
+  /* About Project Section */
+  .about-project {
+    margin-top: 4rem;
+    padding: 2rem;
+    background-color: #F4E1D2; /* Yellow */
+    border-radius: 10px;
+    color: #333;
+  }
+  
+  .about-project h2 {
+    font-size: 2rem;
+    color: #2C6B2F;
+    margin-bottom: 1rem;
+  }
+  
+  .about-project p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    max-width: 800px;
+    margin-left: auto
+  }
+  
+  /* Footer Section Styles */
+  .footer {
+    background-color: #2C6B2F; /* Dark Green */
+    color: white;
+    padding: 40px 0;
+    font-size: 1.1rem;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-section {
+    flex: 1;
+    margin: 0 20px;
+  }
+  
+  .footer-section h4 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #FFEB3B; /* Yellow Accent */
+    text-transform: uppercase;
+  }
+  
+  .footer-section p,
+  .footer-section ul {
+    font-size: 1rem;
+    color: #E0E0E0;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin: 10px 0;
+  }
+  
+  .footer-section ul li a {
+    color: #E0E0E0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-section ul li a:hover {
+    color: #FFEB3B; /* Hover to yellow */
+  }
+  
+  .social-media-links {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .social-media-links a {
+    color: #E0E0E0;
+    font-size: 1.8rem;
+    transition: color 0.3s ease;
+  }
+  
+  .social-media-links a:hover {
+    color: #FFEB3B; /* Hover to yellow */
+  }
+  
+  /* Footer Bottom */
+  .footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #E0E0E0;
+  }
+  
+  .footer-bottom p {
+    margin: 0;
+    padding: 10px 0;
+  }
+  
+  /* Responsiveness for Small Screens */
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .footer-section {
+      margin: 20px 0;
+    }
+  
+    .footer-section ul {
+      text-align: center;
+    }
+  }
