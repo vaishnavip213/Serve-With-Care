@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NGO Login - ServeWithCare</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="login_ngo.css">
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-container">
+      <!-- Header -->
+      <div class="login-header">
+        <h1>
+          <i class="fas fa-heart"></i> ServeWithCare
+        </h1>
+        <p>NGO Login</p>
+      </div>
+
+      <!-- Form Section -->
+      <div class="login-form-section">
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+          <i class="fas fa-check-circle"></i>
+          <span id="successText">Login successful! Redirecting...</span>
+        </div>
+
+        <!-- Error Message -->
+        <div class="error-message" id="errorMessage">
+          <i class="fas fa-exclamation-circle"></i>
+          <span id="errorText">Invalid credentials. Please try again.</span>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm">
+          <!-- Email Input -->
+          <div class="form-group">
+            <label for="email">
+              <i class="fas fa-envelope"></i> Email Address
+            </label>
+            <div class="input-group">
+              <i class="fas fa-envelope"></i>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+                autocomplete="email"
+              />
+            </div>
+            <div class="error-text" id="emailError"></div>
+          </div>
+
+          <!-- Password Input -->
+          <div class="form-group">
+            <label for="password">
+              <i class="fas fa-lock"></i> Password
+            </label>
+            <div class="input-group">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+                autocomplete="current-password"
+              />
+              <button type="button" class="password-toggle" id="passwordToggle">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <div class="error-text" id="passwordError"></div>
+          </div>
+
+          <!-- Remember Me & Forgot Password -->
+          <div class="form-options">
+            <label class="remember-me">
+              <input type="checkbox" id="rememberMe" name="rememberMe" />
+              <label for="rememberMe" style="margin-bottom: 0;">Remember me</label>
+            </label>
+            <a href="forgot-password.html" class="forgot-password">Forgot Password?</a>
+          </div>
+
+          <!-- Login Button -->
+          <button type="submit" class="login-btn" id="loginBtn">
+            <i class="fas fa-sign-in-alt"></i> Login
+          </button>
+        </form>
+
+        <!-- Divider -->
+        <div class="divider">
+          <span>New to ServeWithCare?</span>
+        </div>
+
+        <!-- Signup Link -->
+        <div class="signup-section">
+          <p>Don't have an account?</p>
+          <a href="signup_ngo.html" class="signup-link">
+            <i class="fas fa-building"></i> Create NGO Profile
+          </a>
+        </div>
+
+        <!-- Back Link -->
+        <div class="back-link">
+          <a href="role_selection.html">
+            <i class="fas fa-arrow-left"></i> Back to Role Selection
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="login-footer">
+      <p>&copy; 2025 ServeWithCare. All rights reserved.</p>
+      <p>
+        <a href="#privacy">Privacy Policy</a> | 
+        <a href="#terms">Terms & Conditions</a>
+      </p>
+    </div>
+  </div>
+  <script src="login_ngo.js"></script>
+  </body>
+  </html>
