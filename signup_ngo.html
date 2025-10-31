@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NGO Profile - ServeWithCare</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="signup_ngo.css">
+  </head>
+
+<body>
+  <div class="profile-wrapper">
+    <div class="profile-container">
+      <!-- Header -->
+      <div class="profile-header">
+        <h1>
+          <i class="fas fa-heart"></i> ServeWithCare
+        </h1>
+        <p>Create NGO Profile</p>
+      </div>
+
+      <!-- Form Section -->
+      <div class="profile-form-section">
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+          <i class="fas fa-check-circle"></i>
+          <span id="successText">Profile created successfully! Redirecting to login...</span>
+        </div>
+
+        <!-- Error Message -->
+        <div class="error-message" id="errorMessage">
+          <i class="fas fa-exclamation-circle"></i>
+          <span id="errorText">An error occurred. Please try again.</span>
+        </div>
+
+        <!-- Profile Form -->
+        <form id="profileForm">
+          <!-- Organization Section -->
+          <div class="section-title">
+            <i class="fas fa-building"></i> Organization Information
+          </div>
+
+          <!-- Organization Name -->
+          <div class="form-group">
+            <label for="orgName">
+              <i class="fas fa-building"></i> Organization Name *
+            </label>
+            <div class="input-group">
+              <i class="fas fa-building"></i>
+              <input
+                type="text"
+                id="orgName"
+                name="orgName"
+                placeholder="Enter organization name"
+                required
+              />
+            </div>
+            <div class="error-text" id="orgNameError"></div>
+          </div>
+
+          <!-- Registration Number -->
+          <div class="form-group">
+            <label for="regNumber">
+              <i class="fas fa-certificate"></i> Registration Number *
+            </label>
+            <div class="input-group">
+              <i class="fas fa-certificate"></i>
+              <input
+                type="text"
+                id="regNumber"
+                name="regNumber"
+                placeholder="e.g., NGO-2024-001"
+                required
+              />
+            </div>
+            <div class="error-text" id="regNumberError"></div>
+          </div>
+
+          <!-- Member Since -->
+          <div class="form-group">
+            <label for="memberSince">
+              <i class="fas fa-calendar"></i> Member Since *
+            </label>
+            <div class="input-group">
+              <i class="fas fa-calendar"></i>
+              <input
+                type="month"
+                id="memberSince"
+                name="memberSince"
+                required
+              />
+            </div>
+            <div class="error-text" id="memberSinceError"></div>
+          </div>
+
+          <!-- Location -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">
+                <i class="fas fa-city"></i> City *
+              </label>
+              <div class="input-group">
+                <i class="fas fa-city"></i>
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  placeholder="Enter city"
+                  required
+                />
+              </div>
+              <div class="error-text" id="cityError"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="state">
+                <i class="fas fa-map"></i> State *
+              </label>
+              <div class="input-group">
+                <i class="fas fa-map"></i>
+                <input
+                  type="text"
+                  id="state"
+                  name="state"
+                  placeholder="Enter state"
+                  required
+                />
+              </div>
+              <div class="error-text" id="stateError"></div>
+            </div>
+          </div>
+
+          <!-- Organization Description -->
+          <div class="form-group">
+            <label for="description">
+              <i class="fas fa-file-alt"></i> Organization Description *
+            </label>
+            <textarea
+              id="description"
+              name="description"
+              placeholder="Describe your organization's mission and activities"
+              required
+            ></textarea>
+            <div class="error-text" id="descriptionError"></div>
+          </div>
+
+          <!-- Contact Person Section -->
+          <div class="section-title">
+            <i class="fas fa-user-tie"></i> Contact Person
+          </div>
+
+          <!-- Contact Person Name -->
+          <div class="form-group">
+            <label for="contactName">
+              <i class="fas fa-user"></i> Full Name *
+            </label>
+            <div class="input-group">
+              <i class="fas fa-user"></i>
+              <input
+                type="text"
+                id="contactName"
+                name="contactName"
+                placeholder="Enter contact person's name"
+                required
+              />
+            </div>
+            <div class="error-text" id="contactNameError"></div>
+          </div>
+
+          <!-- Contact Email -->
+          <div class="form-group">
+            <label for="email">
+              <i class="fas fa-envelope"></i> Email Address *
+            </label>
+            <div class="input-group">
+              <i class="fas fa-envelope"></i>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter email address"
+                required
+                autocomplete="email"
+              />
+            </div>
+            <div class="error-text" id="emailError"></div>
+          </div>
+
+          <!-- Contact Phone -->
+          <div class="form-group">
+            <label for="phone">
+              <i class="fas fa-phone"></i> Phone Number *
+            </label>
+            <div class="input-group">
+              <i class="fas fa-phone"></i>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter phone number"
+                required
+                pattern="[0-9\-\+\s\(\)]+"
+              />
+            </div>
+            <div class="error-text" id="phoneError"></div>
+          </div>
+
+          <!-- Password Section -->
+          <div class="section-title">
+            <i class="fas fa-lock"></i> Create Password
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label for="password">
+              <i class="fas fa-lock"></i> Password *
+            </label>
+            <div class="input-group">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Create a strong password"
+                required
+                autocomplete="new-password"
+              />
+            </div>
+            <div class="error-text" id="passwordError"></div>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="form-group">
+            <label for="confirmPassword">
+              <i class="fas fa-lock"></i> Confirm Password *
+            </label>
+            <div class="input-group">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Re-enter your password"
+                required
+                autocomplete="new-password"
+              />
+            </div>
+            <div class="error-text" id="confirmPasswordError"></div>
+          </div>
+
+          <!-- Terms & Conditions -->
+          <div class="terms-checkbox">
+            <input type="checkbox" id="terms" name="terms" required />
+            <label for="terms">
+              I agree to the <a href="#terms" target="_blank">Terms & Conditions</a> and 
+              <a href="#privacy" target="_blank">Privacy Policy</a>
+            </label>
+          </div>
+          <div class="terms-error" id="termsError">Please accept the terms and conditions</div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <i class="fas fa-check-circle"></i><a href="ngo_dashboard.html"> Create Profile</a>
+          </button>
+        </form>
+
+        <!-- Login Link -->
+        <div class="login-section">
+          <p>Already have an account?</p>
+          <a href="login_ngo.html" class="login-link">
+            <i class="fas fa-sign-in-alt"></i> Login here
+          </a>
+        </div>
+
+        <!-- Back Link -->
+        <div class="back-link">
+          <a href="role_selection.html">
+            <i class="fas fa-arrow-left"></i> Back to Role Selection
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="profile-footer">
+      <p>&copy; 2025 ServeWithCare. All rights reserved.</p>
+      <p>
+        <a href="#privacy">Privacy Policy</a> | 
+        <a href="#terms">Terms & Conditions</a>
+      </p>
+    </div>
+  </div>
+  <script src="signup_ngo.js"></script>
+  </body>
+  </html>
